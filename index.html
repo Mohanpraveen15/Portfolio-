@@ -1,0 +1,915 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mohan Praveen — Computer Science & Engineering Student</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+    <style>
+         :root {
+            --ink: #0e1a26;
+            --ink-soft: #142433;
+            --paper: #eeeee6;
+            --paper-dim: #e2e2d6;
+            --amber: #e3a23c;
+            --amber-soft: #f0c078;
+            --sage: #6fa98d;
+            --text-light: #e9edf2;
+            --text-muted: #97a6b4;
+            --text-dark: #16202c;
+            --text-dark-muted: #4b5a66;
+            --line: rgba(233, 237, 242, 0.14);
+            --line-dark: rgba(22, 32, 44, 0.12);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            background: var(--ink);
+            color: var(--text-light);
+            font-family: "Inter", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+         ::selection {
+            background: var(--amber);
+            color: var(--ink);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+        
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: "Space Grotesk", sans-serif;
+            letter-spacing: -0.01em;
+        }
+        
+        .mono {
+            font-family: "JetBrains Mono", monospace;
+        }
+        
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+        
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--amber);
+            outline-offset: 3px;
+        }
+        /* ---------- NAV ---------- */
+        
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(14, 26, 38, 0.82);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+        }
+        
+        nav .wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+        
+        .brand {
+            font-family: "Space Grotesk", sans-serif;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.02em;
+        }
+        
+        .brand span {
+            color: var(--amber);
+        }
+        
+        .navlinks {
+            display: flex;
+            gap: 28px;
+            font-size: 13.5px;
+            color: var(--text-muted);
+            font-family: "JetBrains Mono", monospace;
+        }
+        
+        .navlinks a {
+            transition: color 0.2s;
+            position: relative;
+        }
+        
+        .navlinks a:hover {
+            color: var(--text-light);
+        }
+        
+        .navlinks a::before {
+            content: "~/";
+            color: var(--sage);
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 720px) {
+            .navlinks {
+                display: none;
+            }
+        }
+        /* ---------- HERO ---------- */
+        
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+        
+        .hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient( circle at 82% 20%, rgba(227, 162, 60, 0.1), transparent 45%), radial-gradient( circle at 10% 85%, rgba(111, 169, 141, 0.1), transparent 40%);
+            pointer-events: none;
+        }
+        
+        .hero .wrap {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 56px;
+            align-items: center;
+        }
+        
+        @media (max-width: 860px) {
+            .hero .wrap {
+                grid-template-columns: 1fr;
+            }
+            .hero {
+                padding-top: 96px;
+            }
+        }
+        
+        .eyebrow {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12.5px;
+            color: var(--sage);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 22px;
+            letter-spacing: 0.04em;
+        }
+        
+        .eyebrow .dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--sage);
+            box-shadow: 0 0 0 0 rgba(111, 169, 141, 0.6);
+            animation: pulse 2.2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(111, 169, 141, 0.5);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(111, 169, 141, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(111, 169, 141, 0);
+            }
+        }
+        
+        .hero h1 {
+            font-size: clamp(38px, 5.4vw, 62px);
+            font-weight: 700;
+            line-height: 1.06;
+            margin-bottom: 22px;
+        }
+        
+        .hero h1 .accent {
+            color: var(--amber);
+        }
+        
+        .hero p.lede {
+            font-size: 17px;
+            color: var(--text-muted);
+            max-width: 46ch;
+            margin-bottom: 34px;
+        }
+        
+        .cta-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-bottom: 44px;
+        }
+        
+        .btn {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 13.5px;
+            padding: 13px 22px;
+            border-radius: 3px;
+            transition: transform 0.15s, background 0.15s, border-color 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: var(--amber);
+            color: var(--ink);
+            font-weight: 600;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+        }
+        
+        .btn-ghost {
+            border: 1px solid var(--line);
+            color: var(--text-light);
+        }
+        
+        .btn-ghost:hover {
+            border-color: var(--sage);
+            color: var(--sage);
+            transform: translateY(-2px);
+        }
+        
+        .stat-row {
+            display: flex;
+            gap: 34px;
+            flex-wrap: wrap;
+        }
+        
+        .stat b {
+            display: block;
+            font-family: "Space Grotesk", sans-serif;
+            font-size: 26px;
+            color: var(--paper);
+        }
+        
+        .stat span {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-family: "JetBrains Mono", monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+        
+        .portrait-frame {
+            position: relative;
+            justify-self: center;
+        }
+        
+        .portrait-frame img {
+            width: 280px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+            box-shadow: 0 30px 60px -20px rgba(0, 0, 0, 0.6);
+            position: relative;
+        }
+        /* ---------- SECTION shared ---------- */
+        
+        section {
+            padding: 108px 0;
+            position: relative;
+        }
+        
+        .section-head {
+            margin-bottom: 52px;
+            max-width: 60ch;
+        }
+        
+        .section-tag {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12px;
+            color: var(--amber);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .section-head h2 {
+            font-size: clamp(26px, 3.4vw, 36px);
+            font-weight: 600;
+        }
+        
+        .section-head p {
+            color: var(--text-muted);
+            margin-top: 12px;
+            font-size: 15.5px;
+        }
+        /* ---------- ABOUT ---------- */
+        
+        #about {
+            background: var(--ink-soft);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        
+        @media (max-width: 780px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .about-grid p {
+            color: #c7d0d9;
+            font-size: 15.5px;
+            margin-bottom: 16px;
+        }
+        
+        .about-grid strong {
+            color: var(--paper);
+            font-weight: 600;
+        }
+        
+        .softlist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .softlist span {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12.5px;
+            padding: 8px 13px;
+            border: 1px solid var(--line);
+            border-radius: 20px;
+            color: var(--text-muted);
+        }
+        /* ---------- SKILLS ---------- */
+        
+        .skill-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        
+        @media (max-width: 780px) {
+            .skill-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        @media (max-width: 520px) {
+            .skill-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .skill-card {
+            background: var(--ink-soft);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 24px 22px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        
+        .skill-card:hover {
+            border-color: var(--sage);
+            transform: translateY(-3px);
+        }
+        
+        .skill-card h4 {
+            font-size: 15.5px;
+            margin-bottom: 6px;
+            color: var(--paper);
+        }
+        
+        .skill-card .tags {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 12px;
+            line-height: 1.9;
+        }
+        
+        .skill-card .tags b {
+            color: var(--sage);
+            font-weight: 500;
+        }
+        /* ---------- PROJECTS ---------- */
+        
+        .proj-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+        }
+        
+        @media (max-width: 780px) {
+            .proj-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .proj-card {
+            background: var(--ink-soft);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            transition: border-color 0.2s, transform 0.2s;
+        }
+        
+        .proj-card:hover {
+            border-color: var(--amber);
+            transform: translateY(-3px);
+        }
+        
+        .proj-card .idx {
+            font-family: "JetBrains Mono", monospace;
+            color: var(--amber);
+            font-size: 12.5px;
+        }
+        
+        .proj-card h3 {
+            font-size: 20px;
+            color: var(--paper);
+        }
+        
+        .proj-card p {
+            color: var(--text-muted);
+            font-size: 14.5px;
+        }
+        
+        .proj-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: auto;
+        }
+        
+        .proj-tags span {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 11.5px;
+            color: var(--sage);
+            border: 1px solid var(--line);
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        /* ---------- EDUCATION: commit log ---------- */
+        
+        #education {
+            background: var(--ink-soft);
+            border-top: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+        }
+        
+        .log {
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            overflow: hidden;
+            background: var(--ink);
+        }
+        
+        .log-head {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12.5px;
+            color: var(--text-muted);
+            padding: 14px 22px;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .log-head .lights {
+            display: flex;
+            gap: 6px;
+            margin-right: 8px;
+        }
+        
+        .log-head .lights i {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            display: inline-block;
+            background: var(--line);
+        }
+        
+        .commit {
+            padding: 22px 26px;
+            border-bottom: 1px solid var(--line);
+            display: grid;
+            grid-template-columns: 90px 1fr auto;
+            gap: 18px;
+            align-items: start;
+        }
+        
+        .commit:last-child {
+            border-bottom: none;
+        }
+        
+        @media (max-width: 640px) {
+            .commit {
+                grid-template-columns: 1fr;
+                gap: 6px;
+            }
+        }
+        
+        .commit .yr {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12.5px;
+            color: var(--sage);
+        }
+        
+        .commit h4 {
+            font-size: 16.5px;
+            color: var(--paper);
+            margin-bottom: 3px;
+        }
+        
+        .commit .school {
+            font-size: 13.5px;
+            color: var(--text-muted);
+        }
+        
+        .commit .cgpa {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 13px;
+            color: var(--amber);
+            white-space: nowrap;
+            align-self: center;
+        }
+        /* ---------- CERTS ---------- */
+        
+        .cert-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+        
+        @media (max-width: 780px) {
+            .cert-row {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .cert-card {
+            background: var(--ink-soft);
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            padding: 22px;
+            position: relative;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-3px);
+            border-color: var(--amber);
+        }
+        
+        .cert-card .stamp {
+            font-family: "JetBrains Mono", monospace;
+            font-size: 10.5px;
+            color: var(--amber);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            border: 1px solid var(--amber);
+            border-radius: 4px;
+            padding: 3px 8px;
+            display: inline-block;
+            margin-bottom: 12px;
+        }
+        
+        .cert-card h4 {
+            font-size: 15px;
+            color: var(--paper);
+        }
+        
+        .cert-image {
+            width: 100%;
+            height: auto;
+            border-radius: 6px;
+            margin-top: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: block;
+        }
+        /* ---------- CONTACT ---------- */
+        
+        #contact {
+            text-align: center;
+            padding-bottom: 60px;
+        }
+        
+        #contact h2 {
+            font-size: clamp(28px, 4.4vw, 44px);
+            margin-bottom: 16px;
+        }
+        
+        #contact p {
+            color: var(--text-muted);
+            max-width: 50ch;
+            margin: 0 auto 36px;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 30px 0 50px;
+            color: var(--text-muted);
+            font-family: "JetBrains Mono", monospace;
+            font-size: 12px;
+            border-top: 1px solid var(--line);
+        }
+        
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation: none !important;
+                transition: none !important;
+            }
+            html {
+                scroll-behavior: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="wrap">
+            <div class="brand">MP<span>.</span>dev</div>
+            <div class="navlinks">
+                <a href="#about">about</a>
+                <a href="#skills">skills</a>
+                <a href="#projects">projects</a>
+                <a href="#education">education</a>
+                <a href="#certifications">certifications</a>
+                <a href="#contact">contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero" id="hero">
+        <div class="wrap">
+            <div>
+                <div class="eyebrow">
+                    <span class="dot"></span> open to internships & entry-level roles
+                </div>
+                <h1>Mohan Praveen<br /><span class="accent">builds, learns</span></h1>
+                <p class="lede">
+                    3rd-year B.Tech Computer Science & Engineering student at Vignan University, learning to turn Python and machine learning fundamentals into software that solves real problems.
+                </p>
+                <div class="cta-row">
+                    <a class="btn btn-primary" href="#projects">See my projects →</a>
+                    <a class="btn btn-ghost" href="#contact">Get in touch</a>
+                </div>
+                <div class="stat-row">
+                    <div class="stat"><b>9.2</b><span>Intermediate CGPA</span></div>
+                    <div class="stat"><b>3</b><span>Certifications</span></div>
+                    <div class="stat"><b>2</b><span>Academic Projects</span></div>
+                    <div class="stat"><b>3rd</b><span>Year, B.Tech CSE</span></div>
+                </div>
+            </div>
+            <div class="portrait-frame">
+                <img src="images/profile.png" alt="Portrait of Mohan Praveen">
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">// about</span>
+                <h2>Still early, already building</h2>
+            </div>
+            <div class="about-grid">
+                <div>
+                    <p>
+                        I'm a
+                        <strong>Computer Science & Engineering student</strong> with a growing interest in
+                        <strong>Machine Learning, Data Science and Artificial Intelligence</strong>. I like the part of software where you go from a rough idea to something that actually runs — and I'm most drawn to problems that mix logic with a little
+                        bit of data.
+                    </p>
+                    <p>
+                        Outside coursework, I've been picking up
+                        <strong>Python and Java fundamentals</strong>, exploring
+                        <strong>cybersecurity basics</strong>, and applying what I learn to small academic projects. I'm looking for internships and early roles where I can keep learning while contributing real work.
+                    </p>
+                </div>
+                <div>
+                    <h4 style="
+                font-size: 15px;
+                color: var(--paper);
+                margin-bottom: 14px;
+                font-family: 'Space Grotesk', sans-serif;
+              ">
+                        Soft skills I bring
+                    </h4>
+                    <div class="softlist">
+                        <span>Communication</span>
+                        <span>Teamwork & Collaboration</span>
+                        <span>Leadership</span>
+                        <span>Problem Solving</span>
+                        <span>Analytical Thinking</span>
+                        <span>Time Management</span>
+                        <span>Quick Learning</span>
+                        <span>Adaptability</span>
+                        <span>Presentation Skills</span>
+                        <span>Critical Thinking</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">// skills</span>
+                <h2>Technical arsenal</h2>
+                <p>
+                    What I currently work with, and what I'm actively building depth in.
+                </p>
+            </div>
+            <div class="skill-grid">
+                <div class="skill-card">
+                    <h4>Languages</h4>
+                    <div class="tags"><b>Python</b> · <b>Java</b> · SQL basics</div>
+                </div>
+                <div class="skill-card">
+                    <h4>AI & Data</h4>
+                    <div class="tags">
+                        <b>Machine Learning</b> fundamentals · <b>Data Science</b> · Data Analytics
+                    </div>
+                </div>
+                <div class="skill-card">
+                    <h4>Security</h4>
+                    <div class="tags">Cybersecurity fundamentals</div>
+                </div>
+                <div class="skill-card">
+                    <h4>Tools</h4>
+                    <div class="tags">MS Office · Documentation & reporting</div>
+                </div>
+                <div class="skill-card">
+                    <h4>Core Strength</h4>
+                    <div class="tags">Problem solving · Analytical thinking</div>
+                </div>
+                <div class="skill-card">
+                    <h4>Currently learning</h4>
+                    <div class="tags">Applied ML workflows · DSA practice</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">// projects</span>
+                <h2>Academic projects</h2>
+                <p>
+                    Two projects where I applied classroom concepts to working prototypes.
+                </p>
+            </div>
+            <div class="proj-grid">
+                <div class="proj-card">
+                    <span class="idx">01</span>
+                    <h3>Local Service Finder</h3>
+                    <p>
+                        An application concept for discovering local service providers nearby — matching people who need a service with the right provider in their area, built as a hands-on exercise in structuring a practical, everyday problem into software.
+                    </p>
+                    <div class="proj-tags">
+                        <span>Python</span><span>Problem Solving</span>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <span class="idx">02</span>
+                    <h3>Feedback Analyser</h3>
+                    <p>
+                        A tool for processing and analysing feedback data to surface patterns and insights — an early step into applying data analytics thinking to text-based input.
+                    </p>
+                    <div class="proj-tags">
+                        <span>Data Analytics</span><span>Python</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">// education</span>
+                <h2>Academic history</h2>
+                <p class="mono">git log --author="Mohan Praveen" --oneline</p>
+            </div>
+            <div class="log">
+                <div class="log-head">
+                    <div class="lights"><i></i><i></i><i></i></div>
+                    academic_history.log
+                </div>
+                <div class="commit">
+                    <div class="yr mono">2023–27</div>
+                    <div>
+                        <h4>B.Tech, Computer Science & Engineering</h4>
+                        <div class="school">
+                            Vignan University · 3rd Year, in progress
+                        </div>
+                    </div>
+                    <div class="cgpa mono">6.39 CGPA</div>
+                </div>
+                <div class="commit">
+                    <div class="yr mono">2021–23</div>
+                    <div>
+                        <h4>Intermediate</h4>
+                        <div class="school">Junior College, Vignan Vadlamudi</div>
+                    </div>
+                    <div class="cgpa mono">9.2 CGPA</div>
+                </div>
+                <div class="commit">
+                    <div class="yr mono">2021</div>
+                    <div>
+                        <h4>SSC (10th Class)</h4>
+                        <div class="school">Chimakurthy Public School</div>
+                    </div>
+                    <div class="cgpa mono">7.9 CGPA</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="wrap">
+            <div class="section-head">
+                <span class="section-tag">// certifications</span>
+                <h2>Certifications</h2>
+                <p>Courses and professional learning paths I've completed.</p>
+            </div>
+            <div class="cert-row">
+                <div class="cert-card">
+                    <span class="stamp">NPTEL</span>
+                    <h4>Leadership and Team Effectiveness</h4>
+                    <img src="images/nptel_certificate.jpg" alt="NPTEL Certificate" class="cert-image" />
+                </div>
+                <div class="cert-card">
+                    <span class="stamp">Cisco</span>
+                    <h4>JavaScript Essentials 1</h4>
+                    <img src="images/js_certificate.png" alt="Cisco JavaScript Certificate" class="cert-image" />
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="wrap">
+            <span class="section-tag">// contact</span>
+            <h2>Let's talk</h2>
+            <p>
+                Open to internships, entry-level software roles, and anything ML or Python related. Reach out any time.
+            </p>
+            <div class="contact-links">
+                <a class="btn btn-primary" href="mailto:mohanpraveen732@gmail.com">📧 mohanpraveen732@gmail.com</a>
+                <a class="btn btn-ghost" href="tel:+919391066969">📱 +91 93910 66969</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Mohan Praveen — built with care, one project at a time.
+    </footer>
+</body>
+
+</html>
